@@ -1,7 +1,6 @@
 #include<iostream>
 #include <EngineHeader.h>
 
-
 class GuineaGame :public Engine::CoreApplication
 {
 public:
@@ -11,11 +10,14 @@ public:
 	~GuineaGame()
 	{
 	}
-	//void run()
-	//{
-	//	std::cout << "Hello GUINEA ENGINE";
-	//	std::cin.get();
-	//}
+	void run()
+	{
+		CORE_INFO("Game Engine created");
+		Engine::KeyPressed e(332, false);
+		CORE_INFO(e);
+	
+		Engine::Window window;
+	}
 };
 
 

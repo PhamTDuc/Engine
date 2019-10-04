@@ -2,6 +2,7 @@
 #include "CoreHeader.h"
 #include "Logging.h"
 #include "EventHandler/EventHeader.h"
+#include "CoreEngine/Window.h"
 
 namespace Engine {
 	class ENGINE_API CoreApplication
