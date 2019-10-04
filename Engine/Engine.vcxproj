@@ -248,6 +248,7 @@
   <ItemGroup>
     <ClCompile Include="src\CoreEngine\CoreApplication.cpp" />
     <ClCompile Include="src\CoreEngine\Logging.cpp" />
+    <ClCompile Include="src\CoreEngine\Window.cpp" />
     <ClCompile Include="Vendor\glad.c" />
   </ItemGroup>
   <ItemGroup>

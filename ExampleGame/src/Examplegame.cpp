@@ -17,10 +17,14 @@ public:
 		CORE_INFO(e);
 	
 		Engine::Window window;
+		window.run();
+		glfwTerminate();
 	}
+
 };
 
 
-Engine::CoreApplication* Engine::CreateApplication() {
+Engine::CoreApplication* Engine::CreateApplication() 
+{
 	return new GuineaGame();
 }

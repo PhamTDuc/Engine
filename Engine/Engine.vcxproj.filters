@@ -296,6 +296,9 @@
     <ClCompile Include="Vendor\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\CoreEngine\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Vendor\libs\glfw3.lib" />

@@ -1,43 +1,56 @@
 #pragma once
-#include "CoreEngine/CoreHeader.h"
-#include "CoreEngine/Logging.h"
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include "window.h"
+#include <iostream>
 
 namespace Engine
 {
-	class ENGINE_API Window
+	unsigned int Window::getWidth() const{return m_width;}
+	unsigned int Window::getHeight() const{return m_height;}
+	Window::Window(const char* title, unsigned int width,\
+	unsigned int height):m_height(height),m_width(width),m_title(title)
 	{
-	protected:
-		const char* m_title;
-		unsigned int m_width;
-		unsigned int m_height;
-		GLFWwindow* m_window;
-	public:
-		unsigned int getWidth() const{return m_width;}
-		unsigned int getHeight() const{return m_height;}
-		Window(const char* title="Guinea Engine", unsigned int width=800,\
-		unsigned int height=600):m_height(height),m_width(width),m_title(title)
+		if (!glfwInit())
 		{
-			m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr,nullptr);
-			if (!m_window)
-			{
-				CORE_ERROR("Can't initialize window.");
-				glfwTerminate();
-			}
+			CORE_ERROR("Can't initialize GLFW");
 		}
-		void run()
+		else
 		{
-			glfwMakeContextCurrent(m_window);
-			while (!glfwWindowShouldClose(m_window))
-			{
-				glClear(GL_COLOR_BUFFER_BIT);
-				glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
-				glfwSwapBuffers(m_window);
-				glfwPollEvents();
-			}
-			glfwTerminate();
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		}
 
-	};
+		m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
+		if (!m_window)
+		{
+			CORE_ERROR("Can't initialize window.");
+			glfwTerminate();
+		}
+		glfwSetFramebufferSizeCallback(m_window, Window::framebuffer_size_callback);
+		glfwMakeContextCurrent(m_window);
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			CORE_ERROR("Can't initalize GLAD");
+		}
+	}
+
+	void Window::run()
+	{		
+		while (!glfwWindowShouldClose(m_window))
+		{
+			glClear(GL_COLOR_BUFFER_BIT);
+			glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
+			glfwSwapBuffers(m_window);
+			glfwPollEvents();
+		}
+		glfwDestroyWindow(m_window);
+	}
+
+	void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	{
+		// make sure the viewport matches the new window dimensions; note that width and 
+		// height will be significantly larger than specified on retina displays.
+		glViewport(0, 0, width, height);
+
+	}
 }
