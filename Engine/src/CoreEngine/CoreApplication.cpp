@@ -16,8 +16,6 @@ namespace Engine {
 	void CoreApplication::run() 
 	{
 		CORE_INFO("Game Engine created");
-		Engine::KeyPressed e(332, false);
-		CORE_INFO(e);
-		CORE_INFO("Initialize GLFW and GLAD");
+		CORE_INFO("Default Application");
 	}
 }

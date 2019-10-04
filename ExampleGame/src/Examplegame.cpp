@@ -13,7 +13,7 @@ public:
 	void run()
 	{
 		CORE_INFO("Game Engine created");
-		Engine::KeyPressed e(332, false);
+		Engine::KeyPressed e(332, true);
 		CORE_INFO(e);
 	
 		Engine::Window window;
