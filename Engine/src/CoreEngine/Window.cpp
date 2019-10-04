@@ -26,8 +26,11 @@ namespace Engine
 			CORE_ERROR("Can't initialize window.");
 			glfwTerminate();
 		}
+
 		glfwSetFramebufferSizeCallback(m_window, Window::framebuffer_size_callback);
 		glfwMakeContextCurrent(m_window);
+		glfwSetWindowUserPointer(m_window, this);
+
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
 			CORE_ERROR("Can't initalize GLAD");
@@ -51,6 +54,9 @@ namespace Engine
 		// make sure the viewport matches the new window dimensions; note that width and 
 		// height will be significantly larger than specified on retina displays.
 		glViewport(0, 0, width, height);
+		Window* parent =(Window*)glfwGetWindowUserPointer(window);
+		parent->m_height = height;
+		parent->m_width = width;
 
 	}
 }
