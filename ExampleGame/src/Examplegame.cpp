@@ -2,9 +2,9 @@
 #include<EngineHeader.h>
 #include "CoreEngine/LayerStack.h"
 
-class CustomLayer :public Engine::Layer
+class CustomLayer :public Engine::LayerAbstract
 {public:
-	CustomLayer(const char* name = "Custom Layer") :Layer(name) {};
+	CustomLayer(const char* name = "Custom Layer") :LayerAbstract(name) {};
 	~CustomLayer() = default;
 
 	void onAttach() {};

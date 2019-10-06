@@ -12,8 +12,8 @@ void error_callback(int error, const char* des)
 
 #ifdef ENGINE_PLATFORM_WINDOW 
 	Engine::CoreApplication* Engine::CreateApplication();
-	//int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
-	int main(int argc,const char* argv[])
+	int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
+	//int main(int argc,const char* argv[])
 	{
 		printf("Guinea Engine Running\n");
 

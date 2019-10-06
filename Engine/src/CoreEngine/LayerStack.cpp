@@ -2,26 +2,26 @@
 
 Engine::LayerStack::~LayerStack()
 {
-	for (Layer* layer : m_layers)
+	for (LayerAbstract* layer : m_layers)
 	{
 		layer->onDetach();
 	}
 }
 
-void Engine::LayerStack::pushLayer(Layer* layer)
+void Engine::LayerStack::pushLayer(LayerAbstract* layer)
 {
 	m_layers.emplace(m_layers.begin() + m_size, layer);
 	m_size++;
 	layer->onAttach();
 }
 
-void Engine::LayerStack::pushOverlay(Layer* overlay)
+void Engine::LayerStack::pushOverlay(LayerAbstract* overlay)
 {
 	m_layers.emplace_back(overlay);
 	overlay->onAttach();
 }
 
-void Engine::LayerStack::popLayer(Layer* layer)
+void Engine::LayerStack::popLayer(LayerAbstract* layer)
 {
 	auto it = std::find(m_layers.begin(), m_layers.begin() + m_size, layer);
 	if (it != m_layers.begin() + m_size)
@@ -32,7 +32,7 @@ void Engine::LayerStack::popLayer(Layer* layer)
 	}
 }
 
-void Engine::LayerStack::popOverlay(Layer* overlay)
+void Engine::LayerStack::popOverlay(LayerAbstract* overlay)
 {
 	auto it = std::find(m_layers.begin(), m_layers.begin() + m_size, overlay);
 	if (it != m_layers.begin() + m_size)
