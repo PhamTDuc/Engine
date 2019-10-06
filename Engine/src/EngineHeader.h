@@ -6,11 +6,12 @@
 //Standard Lib
 //Standard Lib
 #include <stdio.h>
+
 //CoreEngine Header
 //CoreEngine Header
 #include "CoreEngine/CoreApplication.h"
-#include "CoreEngine/Logging.h"
-#include "CoreEngine/Window.h"
+#include "CoreEngine/Layer.h"
+
 
 //----------Entry Point--------------
 //----------Entry Point--------------

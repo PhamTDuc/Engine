@@ -282,7 +282,13 @@
     <ClInclude Include="Vendor\includes\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CoreEngine\Window.h">
+    <ClInclude Include="src\CoreEngine\Frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreEngine\Layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreEngine\LayerStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -290,13 +296,16 @@
     <ClCompile Include="src\CoreEngine\CoreApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreEngine\Logging.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vendor\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreEngine\Window.cpp">
+    <ClCompile Include="src\CoreEngine\Logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreEngine\Frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreEngine\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

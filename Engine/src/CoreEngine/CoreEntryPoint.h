@@ -1,4 +1,5 @@
 #pragma once
+#include "Frame.h"
 #include "CoreHeader.h"
 #include "Logging.h"
 #include "CoreApplication.h"
@@ -11,7 +12,9 @@ void error_callback(int error, const char* des)
 
 #ifdef ENGINE_PLATFORM_WINDOW 
 	Engine::CoreApplication* Engine::CreateApplication();
-	int main(int argc, char** argv) {
+	//int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
+	int main(int argc,const char* argv[])
+	{
 		printf("Guinea Engine Running\n");
 
 		Engine::Logging::Init();
@@ -19,15 +22,6 @@ void error_callback(int error, const char* des)
 		CLIENT_INFO("Initialized {0} {1}", "GAME","GUINEA PIG");
 		CORE_INFO("Initialize GLFW and GLAD");
 		//glfwSetErrorCallback(error_callback);
-		//if (!glfwInit())
-		//{
-		//	CORE_ERROR("Can't initialize GLFW");
-		//}
-		//if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		//{
-		//	CORE_ERROR("Can't initalize GLAD");
-		//}
-
 		auto app = Engine::CreateApplication();
 		app->run();
 		delete app;

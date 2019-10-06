@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{0541628C-43B7-43DA-83EB-571EFDC81667}</ProjectGuid>
     <RootNamespace>Engine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\Vendor\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -110,7 +110,7 @@
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\Vendor\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -127,7 +127,7 @@
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\Vendor\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -146,7 +146,7 @@
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\Vendor\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -162,8 +162,10 @@
     <ClInclude Include="src\CoreEngine\EventHandler\EventHeader.h" />
     <ClInclude Include="src\CoreEngine\EventHandler\KeyEvent.h" />
     <ClInclude Include="src\CoreEngine\EventHandler\MouseEvent.h" />
+    <ClInclude Include="src\CoreEngine\Layer.h" />
+    <ClInclude Include="src\CoreEngine\LayerStack.h" />
     <ClInclude Include="src\CoreEngine\Logging.h" />
-    <ClInclude Include="src\CoreEngine\Window.h" />
+    <ClInclude Include="src\CoreEngine\Frame.h" />
     <ClInclude Include="src\EngineHeader.h" />
     <ClInclude Include="Vendor\includes\glad\glad.h" />
     <ClInclude Include="Vendor\includes\GLFW\glfw3.h" />
@@ -247,8 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreEngine\CoreApplication.cpp" />
+    <ClCompile Include="src\CoreEngine\LayerStack.cpp" />
     <ClCompile Include="src\CoreEngine\Logging.cpp" />
-    <ClCompile Include="src\CoreEngine\Window.cpp" />
+    <ClCompile Include="src\CoreEngine\Frame.cpp" />
     <ClCompile Include="Vendor\glad.c" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 #pragma once
-#include "window.h"
+#include "Frame.h"
 #include <iostream>
 
 namespace Engine
@@ -9,6 +9,7 @@ namespace Engine
 	Window::Window(const char* title, unsigned int width,\
 	unsigned int height):m_height(height),m_width(width),m_title(title)
 	{
+		glfwSetErrorCallback([](int error, const char* description) {CORE_ERROR(description);});
 		if (!glfwInit())
 		{
 			CORE_ERROR("Can't initialize GLFW");
@@ -26,8 +27,6 @@ namespace Engine
 			CORE_ERROR("Can't initialize window.");
 			glfwTerminate();
 		}
-
-		glfwSetFramebufferSizeCallback(m_window, Window::framebuffer_size_callback);
 		glfwMakeContextCurrent(m_window);
 		glfwSetWindowUserPointer(m_window, this);
 
@@ -35,14 +34,17 @@ namespace Engine
 		{
 			CORE_ERROR("Can't initalize GLAD");
 		}
+		glfwSetFramebufferSizeCallback(m_window, Window::framebuffer_size_callback);
+		glfwSwapInterval(1);
 	}
 
 	void Window::run()
 	{		
+		
 		while (!glfwWindowShouldClose(m_window))
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
-			glClearColor(0.5f, 0.0f, 0.5f, 1.0f);
+			glClearColor(0.2f, 0.0f, 0.5f, 1.0f);
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();
 		}
