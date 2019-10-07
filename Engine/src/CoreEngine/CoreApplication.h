@@ -11,6 +11,8 @@ namespace Engine {
 		CoreApplication();
 		virtual ~CoreApplication();
 		virtual void run();
+	protected:
+		std::unique_ptr<Engine::Window> m_window;
 	};
 
 	//Defined by Client

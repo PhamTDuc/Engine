@@ -3,7 +3,7 @@
 
 namespace Engine {
 
-	CoreApplication::CoreApplication()
+	CoreApplication::CoreApplication()//:m_window(std::make_unique<Engine::Window>())
 	{
 	}
 

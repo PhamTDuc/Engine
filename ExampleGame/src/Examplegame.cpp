@@ -34,8 +34,10 @@ public:
 		CustomLayer layer("Layer 1");
 		CORE_INFO(layer);
 	
-		Engine::Window window("HelloWindow");
-		window.run();
+		std::unique_ptr<Engine::Window> window = std::make_unique<Engine::Window>();
+		
+		m_window=std::move(window);
+		m_window->run();
 	
 		glfwTerminate();
 	}
