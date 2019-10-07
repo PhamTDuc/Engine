@@ -93,6 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Vendor\includes;$(SolutionDir)$(Projectname)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -108,6 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Vendor\includes;$(SolutionDir)$(Projectname)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,6 +127,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Vendor\includes;$(SolutionDir)$(Projectname)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,6 +147,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Vendor\includes;$(SolutionDir)$(Projectname)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOW;ENGINE_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,6 +174,14 @@
     <ClInclude Include="Vendor\includes\glad\glad.h" />
     <ClInclude Include="Vendor\includes\GLFW\glfw3.h" />
     <ClInclude Include="Vendor\includes\GLFW\glfw3native.h" />
+    <ClInclude Include="Vendor\includes\imgui\imconfig.h" />
+    <ClInclude Include="Vendor\includes\imgui\imgui.h" />
+    <ClInclude Include="Vendor\includes\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Vendor\includes\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Vendor\includes\imgui\imgui_internal.h" />
+    <ClInclude Include="Vendor\includes\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Vendor\includes\imgui\imstb_textedit.h" />
+    <ClInclude Include="Vendor\includes\imgui\imstb_truetype.h" />
     <ClInclude Include="Vendor\includes\spdlog\async.h" />
     <ClInclude Include="Vendor\includes\spdlog\async_logger-inl.h" />
     <ClInclude Include="Vendor\includes\spdlog\async_logger.h" />
@@ -253,6 +265,12 @@
     <ClCompile Include="src\CoreEngine\Logging.cpp" />
     <ClCompile Include="src\CoreEngine\Frame.cpp" />
     <ClCompile Include="Vendor\glad.c" />
+    <ClCompile Include="Vendor\includes\imgui\imgui.cpp" />
+    <ClCompile Include="Vendor\includes\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Vendor\includes\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\includes\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Vendor\includes\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Vendor\includes\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Vendor\libs\glfw3.lib" />
