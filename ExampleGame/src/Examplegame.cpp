@@ -24,7 +24,12 @@ public:
 	~GuineaGame()
 	{
 	}
-	void run()
+	void onEvent(const Engine::EventAbstract& e) override
+	{
+		CLIENT_INFO(e);
+
+	}
+	void run() override
 	{
 		CORE_INFO("Game Engine created");
 		Engine::KeyPressed e(332, true);
@@ -37,15 +42,15 @@ public:
 		std::unique_ptr<Engine::Window> window = std::make_unique<Engine::Window>();
 		
 		m_window=std::move(window);
+		m_window->setEventCallback(FN_BIND(onEvent));
 		m_window->run();
-	
+
 		glfwTerminate();
 	}
 
 };
-
-
-Engine::CoreApplication* Engine::CreateApplication() 
+std::unique_ptr<Engine::CoreApplication> Engine::createApplication() 
 {
-	return new GuineaGame();
+	std::unique_ptr<Engine::CoreApplication> app(new GuineaGame());
+	return std::move(app);
 }

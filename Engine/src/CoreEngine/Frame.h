@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreEngine/CoreHeader.h"
 #include "CoreEngine/Logging.h"
+#include "CoreEngine/EventHandler/EventHeader.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -15,11 +16,15 @@ namespace Engine
 		unsigned int m_height;
 		GLFWwindow* m_window;
 	public:
+		using EventCallbackFunc = std::function<void(EventAbstract&)>;
 		unsigned int getWidth() const;
 		unsigned int getHeight() const;
 		Window(const char* title = "Guinea Engine", unsigned int width = 800, \
 			unsigned int height = 600);
+		void setEventCallback(const EventCallbackFunc fn) { m_fn=fn; }
 		void run();
 		void static framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	protected:
+		EventCallbackFunc m_fn;
 	};
 }

@@ -5,13 +5,9 @@
 #include "CoreApplication.h"
 #include "EventHandler/EventHeader.h"
 
-void error_callback(int error, const char* des)
-{
-	CORE_ERROR(des);
-}
+
 
 #ifdef ENGINE_PLATFORM_WINDOW 
-	Engine::CoreApplication* Engine::CreateApplication();
 	//int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
 	int main(int argc,const char* argv[])
 	{
@@ -21,10 +17,9 @@ void error_callback(int error, const char* des)
 		CORE_INFO("Initilized Logger");
 		CLIENT_INFO("Initialized {0} {1}", "GAME","GUINEA PIG");
 		CORE_INFO("Initialize GLFW and GLAD");
-		//glfwSetErrorCallback(error_callback);
-		auto app = Engine::CreateApplication();
+		auto app = Engine::createApplication();
 		app->run();
-		delete app;
+		//delete app;
 	}
 
 

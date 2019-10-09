@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include "EventHandler/EventHeader.h"
 #include "Frame.h"
+#define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
@@ -37,31 +39,45 @@ namespace Engine
 		{
 			CORE_ERROR("Can't initalize GLAD");
 		}
-		glfwSetFramebufferSizeCallback(m_window, Window::framebuffer_size_callback);
-		glfwSwapInterval(1);
-
+		glfwSetWindowSizeCallback(m_window, Window::framebuffer_size_callback);
+		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window,double xPos, double yPos) 
+		{
+			MouseMoved e((float)xPos, (float)yPos);
+			//Window& window=*(reinterpret_cast<Window*>(glfwGetWindowUserPointer(window)));
+			Window& owner = *(Window*)glfwGetWindowUserPointer(window);
+			owner.m_fn(e);
+		});
+		glfwSwapInterval(1);		
+	}
+	void Window::run()
+	{	
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
 		// Setup Dear ImGui style
 		ImGui::StyleColorsDark();
 		//ImGui::StyleColorsClassic();
+		ImGuiStyle& style = ImGui::GetStyle();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			style.WindowRounding = 0.0f;
+			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+		}
 
 		// Setup Platform/Renderer bindings
 		ImGui_ImplGlfw_InitForOpenGL(m_window, true);
 		ImGui_ImplOpenGL3_Init("#version 330");
-	}
-
-	void Window::run()
-	{	
 		bool show_demo_window = true;
 		bool show_another_window = false;
 		ImVec4 clear_color = ImVec4(0.5f, 0.f, 0.80f, 1.00f);
 		
+		//glfwMakeContextCurrent(m_window);
 		while (!glfwWindowShouldClose(m_window))
 		{
 			// Poll and handle events (inputs, window resize, etc.)
@@ -116,14 +132,20 @@ namespace Engine
 			// Rendering
 			ImGui::Render();
 			int display_w, display_h;
-			glfwMakeContextCurrent(m_window);
+			//glfwMakeContextCurrent(m_window);
 			glfwGetFramebufferSize(m_window, &display_w, &display_h);
 			glViewport(0, 0, display_w, display_h);
 			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT);
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				GLFWwindow* backup_current_context = glfwGetCurrentContext();
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				glfwMakeContextCurrent(backup_current_context);
+			}
 
-			glfwMakeContextCurrent(m_window);
 			glfwSwapBuffers(m_window);
 		}
 
@@ -131,7 +153,7 @@ namespace Engine
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
-		glfwDestroyWindow(m_window);
+		//glfwDestroyWindow(m_window);
 	}
 
 	void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)

@@ -12,7 +12,7 @@ namespace Engine {
 	{
 	}
 
-
+	void CoreApplication::onEvent(const EventAbstract &e){}
 	void CoreApplication::run() 
 	{
 		CORE_INFO("Game Engine created");
